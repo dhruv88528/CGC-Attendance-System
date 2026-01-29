@@ -1,11 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light Theme - Automated Attendance System */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Force Light Theme */
+  color-scheme: light;
+  color: #1f2937;
+  background-color: #f9fafb;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,26 +20,60 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #3b82f6;
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+  color: #2563eb;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
+  min-height: 100vh;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+#root {
+  width: 100%;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Shimmer Animation for skeleton loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #111827;
+  font-weight: 600;
 }
 
 button {
@@ -42,27 +83,638 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #3b82f6;
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.25s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Ensure light backgrounds everywhere */
+.bg-gray-900,
+.bg-gray-800,
+.bg-dark-900,
+.bg-dark-800 {
+  background-color: #ffffff !important;
+}
+
+/* Override any dark text that might be hard to read */
+.text-white {
+  color: #1f2937;
+}
+
+/* Cards and containers should be white */
+.card,
+[class*="rounded-"] {
+  background-color: #ffffff;
+}
+
+/* Input fields light styling */
+input,
+textarea,
+select {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+  color: #1f2937;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Scrollbar styling for light theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
+
+/* Mobile First - Base styles for small screens */
+@media screen and (max-width: 768px) {
+
+  /* Base font sizes */
+  html {
+    font-size: 14px;
   }
-  a:hover {
-    color: #747bff;
+
+  body {
+    overflow-x: hidden;
   }
+
+  /* Headers */
+  h1 {
+    font-size: 1.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+  }
+
+  h3 {
+    font-size: 1.1rem !important;
+  }
+
+  /* Container padding */
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Grid layouts - Stack on mobile */
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4,
+  .md\:grid-cols-2,
+  .md\:grid-cols-3,
+  .md\:grid-cols-4,
+  .lg\:grid-cols-2,
+  .lg\:grid-cols-3,
+  .lg\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Flex layouts - Stack on mobile */
+  .flex.items-center.justify-between {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Buttons - Full width on mobile */
+  .flex.gap-3 button,
+  .flex.gap-2 button {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Cards - Full width and proper padding */
+  [class*="Card"],
+  .rounded-xl,
+  .rounded-2xl {
+    margin: 0.5rem 0;
+    padding: 1rem !important;
+  }
+
+  /* Tables - Horizontal scroll */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Modals - Full width on mobile */
+  .fixed.inset-0>div {
+    margin: 1rem !important;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* Form inputs */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+    /* Prevents zoom on iOS */
+    padding: 0.75rem !important;
+  }
+
+  /* Page headers - Stack */
+  .flex.items-center.justify-between>div:first-child {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Hide sidebar on mobile */
+  aside.h-screen {
+    display: none;
+  }
+
+  /* Main content takes full width */
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Stats cards - Smaller on mobile */
+  .text-2xl {
+    font-size: 1.25rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem !important;
+  }
+
+  /* Camera modal - Full screen on mobile */
+  .aspect-video {
+    aspect-ratio: 4/3;
+  }
+}
+
+/* Small phones */
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+
+  /* Tighter padding */
+  .p-4 {
+    padding: 0.75rem !important;
+  }
+
+  .p-6 {
+    padding: 1rem !important;
+  }
+
+  /* Smaller gaps */
+  .gap-4 {
+    gap: 0.75rem !important;
+  }
+
+  .gap-6 {
+    gap: 1rem !important;
+  }
+
+  /* Buttons even smaller */
   button {
-    background-color: #f9f9f9;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  /* Icons smaller */
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Page title with icon - Stack */
+  h1.flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  h1.flex svg {
+    margin-right: 0 !important;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+  /* 2 column grids on tablet */
+  .lg\:grid-cols-3,
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Sidebar collapsed by default on tablet */
+  aside.h-screen {
+    width: 80px !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+  /* Larger touch targets */
+  button,
+  a,
+  .cursor-pointer {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* No hover effects */
+  button:hover {
+    transform: none;
+  }
+}
+
+/* Safe area for notched phones */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Print styles */
+@media print {
+  aside {
+    display: none !important;
+  }
+
+  main {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* ========================================
+   COMPONENT-SPECIFIC MOBILE FIXES
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* Header fixes */
+  header .flex.items-center.justify-between {
+    flex-wrap: nowrap;
+  }
+
+  header h1 {
+    font-size: 1rem !important;
+  }
+
+  header p {
+    display: none;
+  }
+
+  /* Page header with button - Stack */
+  .mb-8 .flex.items-center.justify-between {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .mb-8 .flex.items-center.justify-between button {
+    width: 100%;
+  }
+
+  /* Photo section - Smaller on mobile */
+  .w-48.h-48 {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  /* Camera buttons - Stack */
+  .flex.gap-2.w-full {
+    flex-direction: column;
+  }
+
+  .flex.gap-2.w-full button,
+  .flex.gap-2.w-full label {
+    width: 100%;
+  }
+
+  /* Modal fixes - using attribute selector */
+  [class*="fixed"][class*="inset-0"]>div {
+    width: calc(100% - 2rem) !important;
+    max-width: 100% !important;
+    margin: 1rem !important;
+  }
+
+  /* Camera capture - Full width */
+  .aspect-video {
+    width: 100% !important;
+  }
+
+  /* Teacher/Student cards - Full width */
+  [class*="lg:grid-cols"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats cards - 2 columns on mobile */
+  .grid.gap-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .grid.gap-4 .p-5 {
+    padding: 0.75rem !important;
+  }
+
+  /* Search input - Full width */
+  .mb-6.p-4 input {
+    width: 100%;
+  }
+
+  /* Action buttons group */
+  .flex.gap-3 {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  .flex.gap-3 button {
+    flex: 1 1 auto;
+  }
+
+  /* Dropdown menus - Full width */
+  .absolute.right-0.mt-2 {
+    left: 0;
+    right: 0;
+    width: auto !important;
+    max-width: calc(100vw - 2rem);
+  }
+
+  /* Camera settings panel */
+  .absolute.bottom-20 {
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    bottom: 5rem !important;
+  }
+
+  /* Select multiple - Taller on mobile */
+  select[multiple] {
+    height: auto !important;
+    min-height: 100px;
+  }
+
+  /* Subject tags - Wrap properly */
+  .flex.flex-wrap.gap-2 {
+    gap: 0.25rem !important;
+  }
+
+  .flex.flex-wrap.gap-2 span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  /* Table container */
+  .overflow-x-auto {
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+
+  /* Card action buttons */
+  .flex.gap-1 button {
+    padding: 0.5rem;
+  }
+}
+
+/* Very small screens - Extra fixes */
+@media screen and (max-width: 380px) {
+
+  /* Even smaller stats */
+  .grid.gap-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Smaller card padding */
+  .p-5,
+  .p-6 {
+    padding: 0.75rem !important;
+  }
+
+  /* Smaller buttons */
+  button {
+    padding: 0.375rem 0.5rem !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ========================================
+   TEACHER DASHBOARD MOBILE FIXES
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* Dashboard header - Stack vertically */
+  .max-w-7xl .mb-8 .flex.items-center.justify-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+
+  /* Teacher header icon + text */
+  .max-w-7xl .mb-8 .flex.items-center.justify-between>.flex.items-center {
+    width: 100%;
+  }
+
+  /* Smaller avatar on mobile */
+  .w-14.h-14 {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .w-14.h-14+div h1 {
+    font-size: 1.25rem !important;
+  }
+
+  /* Button group - Full width */
+  .max-w-7xl .mb-8 .flex.items-center.gap-3 {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .max-w-7xl .mb-8 .flex.items-center.gap-3 button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Stats grid - 2 columns on mobile */
+  .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Quick actions grid - Single column on mobile */
+  .grid.md\\:grid-cols-2.gap-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Main content grid - Stack on mobile */
+  .grid.lg\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Quick action cards - Smaller padding */
+  .bg-gradient-to-br.rounded-2xl.p-5 {
+    padding: 1rem !important;
+  }
+
+  /* Class items - Tighter spacing */
+  .flex.items-center.p-3.rounded-lg {
+    padding: 0.5rem !important;
+  }
+
+  .flex.items-center.p-3.rounded-lg .w-10.h-10 {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Table - Horizontal scroll */
+  .overflow-x-auto table {
+    min-width: 500px;
+  }
+
+  /* Table cells - Smaller padding */
+  .overflow-x-auto th,
+  .overflow-x-auto td {
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Hide table on very small screens, show cards instead */
+  .overflow-x-auto {
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+}
+
+/* ========================================
+   ATTENDANCE PAGE MOBILE FIXES
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* Camera container - Full width */
+  .aspect-video {
+    width: 100% !important;
+    max-height: 300px;
+  }
+
+  /* Attendance controls - Stack */
+  .flex.items-center.gap-4 {
+    flex-direction: column;
+    gap: 0.75rem !important;
+  }
+
+  /* Class selector - Full width */
+  select {
+    width: 100% !important;
+  }
+
+  /* Attendance buttons - Full width */
+  .flex.gap-2 button {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Student attendance cards */
+  .grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Student card - Smaller */
+  .w-12.h-12 {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+/* ========================================
+   REPORTS PAGE MOBILE FIXES  
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* Chart container */
+  .recharts-wrapper {
+    font-size: 10px !important;
+  }
+
+  /* Report filters - Stack */
+  .flex.items-center.gap-3 {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  /* Date inputs - Full width */
+  input[type="date"] {
+    width: 100% !important;
+  }
+
+  /* Export buttons - Full width */
+  .flex.gap-2 {
+    flex-direction: column;
+  }
+}
+
+/* ========================================
+   GENERAL MOBILE TYPOGRAPHY
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* Truncate long text */
+  .truncate {
+    max-width: 150px;
+  }
+
+  /* Hide decorative elements */
+  .hidden-mobile,
+  .lg\\:block {
+    display: none !important;
+  }
+
+  /* Better touch feedback */
+  button:active,
+  .cursor-pointer:active {
+    opacity: 0.8;
+    transform: scale(0.98);
   }
 }

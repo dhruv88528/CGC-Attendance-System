@@ -1,0 +1,146 @@
+﻿/* Theme Variables */
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #93c5fd;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #8b5cf6;
+  
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+}
+
+/* Dark Theme */
+.dark {
+  --color-bg: #111827;
+  --color-surface: #1f2937;
+  --color-text: #f9fafb;
+  --color-text-muted: #d1d5db;
+}
+
+/* Light Theme */
+.light {
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+}
+
+/* Theme Utility Classes */
+.theme-transition {
+  transition: background-color var(--transition-normal) ease,
+              color var(--transition-normal) ease,
+              border-color var(--transition-normal) ease;
+}
+
+/* Glass Morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(31, 41, 55, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient Borders */
+.gradient-border {
+  position: relative;
+  border: double 3px transparent;
+  border-radius: var(--radius-lg);
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(to right, var(--color-primary), var(--color-info));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.dark .gradient-border {
+  background-image: linear-gradient(var(--color-surface), var(--color-surface)), 
+                    linear-gradient(to right, var(--color-primary), var(--color-info));
+}
+
+/* Neumorphism */
+.neumorphic {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 20px 20px 60px #d9d9d9,
+              -20px -20px 60px #ffffff;
+}
+
+.dark .neumorphic {
+  background: linear-gradient(145deg, #1a2233, #1f2937);
+  box-shadow: 20px 20px 60px #151c2a,
+              -20px -20px 60px #29344a;
+}
+
+/* Floating Elements */
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-delay-1 {
+  animation-delay: 1s;
+}
+
+.floating-delay-2 {
+  animation-delay: 2s;
+}
+
+/* Text Gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-info) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-success {
+  background: linear-gradient(135deg, var(--color-success) 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Background Patterns */
+.pattern-dots {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: rgba(59, 130, 246, 0.1);
+}
+
+.pattern-grid {
+  background-image: linear-gradient(currentColor 1px, transparent 1px),
+                    linear-gradient(90deg, currentColor 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: rgba(59, 130, 246, 0.1);
+}
+
+/* Custom Scrollbar for Theme */
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
