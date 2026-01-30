@@ -1,4 +1,3 @@
-
 """
 Face Recognition Service using FaceNet
 Handles face detection, encoding, and matching with 512-D embeddings

@@ -16,16 +16,6 @@ CORS(app)
 face_service = FaceRecognitionService()
 
 
-@app.route('/')
-def index():
-    """Root endpoint"""
-    return jsonify({
-        'status': 'online',
-        'service': 'Face Recognition API',
-        'message': 'System is running normally. Use /health for detailed status.'
-    }), 200
-
-
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""

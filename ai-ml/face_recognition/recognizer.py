@@ -1,4 +1,3 @@
-
 # Face Recognition Service Implementation
 import face_recognition
 import numpy as np
